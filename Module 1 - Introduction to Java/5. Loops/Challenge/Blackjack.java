@@ -10,18 +10,38 @@ public class Blackjack {
         System.out.println("We shall see..");
         System.out.println("..Ready? Press anything to begin!");
         // Task 3 – Wait for the user to press enter.
+        scan.nextLine();
         // Task 4 – Get two random cards.
-        // – Print them: \n You get a \n" + <randomCard> + "\n and a \n" + <randomCard>
+        int randomInt1 = drawRandomCard();
+        int randomInt2 = drawRandomCard();
+        int userTotal = 0;
 
+        String userCard1 = faceDown(randomInt1);
+        String userCard2 = faceDown(randomInt2);
+        userTotal += (Math.min(randomInt1, 10) + Math.min(randomInt2, 10));
+
+        // – Print them: \n You get a \n" + <randomCard> + "\n and a \n" + <randomCard>
+        System.out.println("\n You get a \n" + userCard1 + "\n and a \n" + userCard2);
         // Task 5 – Print the sum of your hand value.
         // – print: your total is: <hand value>
+        System.out.println("Your total is: " + userTotal);
 
         // Task 6 – Get two random cards for the dealer.
         // – Print: The dealer shows \n" + <first card> + "\nand has a card facing down
         // \n" + <facedown card>
         // – Print: \nThe dealer's total is hidden
+        randomInt1 = drawRandomCard();
+        randomInt2 = drawRandomCard();
+        int dealerTotal = 0;
+        dealerTotal += (Math.min(randomInt1, 10) + Math.min(randomInt2, 10));
+
+        String dealerCard1 = faceDown(randomInt1);
+        String dealerCard2 = faceDown(randomInt2);
+        System.out.println("The dealer shows \n" + dealerCard1 + "\nand has a card facing down \n" + dealerCard2);
+        System.out.println("The dealer's total is hidden");
 
         // Task 8 – Keep asking the player to hit or stay (while loop).
+        hitOrStay();
         // 1. Every time the player hits
         // – draw a new card.
         // – calculate their new total.
@@ -32,7 +52,6 @@ public class Blackjack {
 
         // For tasks 9 to 13, see the article: Blackjack Part II.
         scan.close();
-
     }
 
     /**
@@ -71,79 +90,90 @@ public class Blackjack {
                         "  | JJJ |\n" +
                         "  |  J  |\n" +
                         "  |_____|\n";
-            case 2: 
-                return  "   _____\n" +              
-                    "  |2    |\n"+ 
-                    "  |  o  |\n"+
-                    "  |     |\n"+
-                    "  |  o  |\n"+
-                    "  |____Z|\n";
-            case 3: return "   _____\n" +
-                  "  |3    |\n"+
-                  "  | o o |\n"+
-                  "  |     |\n"+
-                  "  |  o  |\n"+
-                  "  |____E|\n";
-            case 4: return "   _____\n" +
-                   "  |4    |\n"+
-                   "  | o o |\n"+
-                   "  |     |\n"+
-                   "  | o o |\n"+
-                   "  |____h|\n";
-            case 5: return  "   _____ \n" +
-                    "  |5    |\n" +
-                    "  | o o |\n" +
-                    "  |  o  |\n" +
-                    "  | o o |\n" +
-                    "  |____S|\n";
-            case 6: return     "   _____ \n" +
-                    "  |6    |\n" +
-                    "  | o o |\n" +
-                    "  | o o |\n" +
-                    "  | o o |\n" +
-                    "  |____6|\n";
-            case 7: return               "   _____ \n" +
-                    "  |7    |\n" +
-                    "  | o o |\n" +
-                    "  |o o o|\n" +
-                    "  | o o |\n" +
-                    "  |____7|\n";
-            case 8: return                  "   _____ \n" +
-                    "  |8    |\n" +
-                    "  |o o o|\n" +
-                    "  | o o |\n" +
-                    "  |o o o|\n" +
-                    "  |____8|\n";
-            case 9: return       "   _____ \n" +
-                    "  |9    |\n" +
-                    "  |o o o|\n" +
-                    "  |o o o|\n" +
-                    "  |o o o|\n" +
-                    "  |____9|\n";
-            case 10: return             "   _____ \n" +
-                    "  |10  o|\n" +
-                    "  |o o o|\n" +
-                    "  |o o o|\n" +
-                    "  |o o o|\n" +
-                    "  |___10|\n";
-            case 11: return        "   _____\n" +
-                    "  |J  ww|\n"+ 
-                    "  | o {)|\n"+ 
-                    "  |o o% |\n"+ 
-                    "  | | % |\n"+ 
-                    "  |__%%[|\n";
-            case 12: return              "   _____\n" +
-                    "  |Q  ww|\n"+ 
-                    "  | o {(|\n"+ 
-                    "  |o o%%|\n"+ 
-                    "  | |%%%|\n"+ 
-                    "  |_%%%O|\n";
-            case 13: return              "   _____\n" +
-                    "  |K  WW|\n"+ 
-                    "  | o {)|\n"+ 
-                    "  |o o%%|\n"+ 
-                    "  | |%%%|\n"+ 
-                    "  |_%%%>|\n";
+            case 2:
+                return "   _____\n" +
+                        "  |2    |\n" +
+                        "  |  o  |\n" +
+                        "  |     |\n" +
+                        "  |  o  |\n" +
+                        "  |____Z|\n";
+            case 3:
+                return "   _____\n" +
+                        "  |3    |\n" +
+                        "  | o o |\n" +
+                        "  |     |\n" +
+                        "  |  o  |\n" +
+                        "  |____E|\n";
+            case 4:
+                return "   _____\n" +
+                        "  |4    |\n" +
+                        "  | o o |\n" +
+                        "  |     |\n" +
+                        "  | o o |\n" +
+                        "  |____h|\n";
+            case 5:
+                return "   _____ \n" +
+                        "  |5    |\n" +
+                        "  | o o |\n" +
+                        "  |  o  |\n" +
+                        "  | o o |\n" +
+                        "  |____S|\n";
+            case 6:
+                return "   _____ \n" +
+                        "  |6    |\n" +
+                        "  | o o |\n" +
+                        "  | o o |\n" +
+                        "  | o o |\n" +
+                        "  |____6|\n";
+            case 7:
+                return "   _____ \n" +
+                        "  |7    |\n" +
+                        "  | o o |\n" +
+                        "  |o o o|\n" +
+                        "  | o o |\n" +
+                        "  |____7|\n";
+            case 8:
+                return "   _____ \n" +
+                        "  |8    |\n" +
+                        "  |o o o|\n" +
+                        "  | o o |\n" +
+                        "  |o o o|\n" +
+                        "  |____8|\n";
+            case 9:
+                return "   _____ \n" +
+                        "  |9    |\n" +
+                        "  |o o o|\n" +
+                        "  |o o o|\n" +
+                        "  |o o o|\n" +
+                        "  |____9|\n";
+            case 10:
+                return "   _____ \n" +
+                        "  |10  o|\n" +
+                        "  |o o o|\n" +
+                        "  |o o o|\n" +
+                        "  |o o o|\n" +
+                        "  |___10|\n";
+            case 11:
+                return "   _____\n" +
+                        "  |J  ww|\n" +
+                        "  | o {)|\n" +
+                        "  |o o% |\n" +
+                        "  | | % |\n" +
+                        "  |__%%[|\n";
+            case 12:
+                return "   _____\n" +
+                        "  |Q  ww|\n" +
+                        "  | o {(|\n" +
+                        "  |o o%%|\n" +
+                        "  | |%%%|\n" +
+                        "  |_%%%O|\n";
+            case 13:
+                return "   _____\n" +
+                        "  |K  WW|\n" +
+                        "  | o {)|\n" +
+                        "  |o o%%|\n" +
+                        "  | |%%%|\n" +
+                        "  |_%%%>|\n";
             default:
                 return "";
         }
@@ -162,4 +192,18 @@ public class Blackjack {
      *         Please write 'hit' or 'stay'
      *         3. Returns the user's option
      */
+    public static void hitOrStay() {
+        System.out.println("Would you like to hit or stay?");
+        String userEntry = scan.nextLine();
+        while (true) {
+            if (!(userEntry.equals("hit") || userEntry.equals("stay"))) {
+                System.out.println("Please write 'hit' or 'stay'");
+                userEntry = scan.nextLine();
+            } else {
+                if (userEntry.equals("hit")) {
+
+                }
+            }
+        }
+    }
 }
