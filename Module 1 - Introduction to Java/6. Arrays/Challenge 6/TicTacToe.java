@@ -43,7 +43,17 @@ public class TicTacToe {
         askUser(board, '0');
       }
       printBoard(board);
+      int score = checkWin(board);
+      if (score == 3) {
+        System.out.println("X wins!!");
+        System.exit(0);
+      }
+      if (score == -3) {
+        System.out.println("0 wins!!");
+        System.exit(0);
+      }
     }
+    System.out.println("It's a tie!!");
     scan.close();
   }
 
@@ -91,7 +101,7 @@ public class TicTacToe {
     int row = scan.nextInt();
     int col = scan.nextInt();
     while (true) {
-      if (row > 2 || col > 2) {
+      if (row > 2 || col > 2 || row < 0 || col < 0) {
         System.out.println("- Out of bounds, pick a row and column between 0 and 2");
         row = scan.nextInt();
         col = scan.nextInt();
@@ -99,12 +109,11 @@ public class TicTacToe {
         System.out.println("- Spot taken, pick another row and column number:");
         row = scan.nextInt();
         col = scan.nextInt();
-      }
-
-      else {
+      } else {
         break;
       }
     }
+
     int[] result = { row, col };
     board[row][col] = player;
     return result;
@@ -125,23 +134,84 @@ public class TicTacToe {
    *         5. Check the right diagonal for a straight X or straight O (Task 10).
    */
 
-  // public static int checkWin(char[][] board) {
-  // // check rows
-  // for (int i = 0; i < board.length; i++) {
-  // int count = 0;
-  // for (int j = 0; j < board[i].length; j++) {
-  // if (board[i][j] == board[i][0]) {
-  // count++;
-  // }
-  // if(count == 3)
-  // }
+  public static int checkWin(char[][] board) {
+    int rows = checkRows(board);
+    if (Math.abs(rows) == 3)
+      return rows;
 
-  // }
-  // check columns
+    int columns = checkColumns(board);
+    if (Math.abs(columns) == 3)
+      return columns;
 
-  // check left diagonal
-  // check right diagonal
+    int leftDiagonal = checkLeft(board);
+    if (Math.abs(leftDiagonal) == 3)
+      return leftDiagonal;
 
-  // }
+    int rightDiagonal = checkRight(board);
+    if (Math.abs(rightDiagonal) == 3)
+      return rightDiagonal;
+
+    return 0;
+  }
+
+  public static int checkRows(char[][] board) {
+    int count = 0;
+    for (int i = 0; i < board.length; i++) {
+      count = 0;
+      for (int j = 0; j < board[i].length; j++) {
+        if (board[i][j] == 'X')
+          count++;
+        if (board[i][j] == '0')
+          count--;
+      }
+      if (count == 3 || count == -3)
+        return count;
+    }
+    return count;
+  }
+
+  public static int checkColumns(char[][] board) {
+    int count = 0;
+    for (int i = 0; i < board.length; i++) {
+      count = 0;
+      for (int j = 0; j < board[i].length; j++) {
+        if (board[j][i] == 'X')
+          count++;
+        if (board[j][i] == '0')
+          count--;
+      }
+      if (count == 3 || count == -3)
+        return count;
+    }
+    return count;
+  }
+
+  public static int checkLeft(char[][] board) {
+    int count = 0;
+    for (int i = 0; i < board.length; i++) {
+      if (board[i][i] == 'X')
+        count++;
+      if (board[i][i] == '0')
+        count--;
+      if (count == 3 || count == -3)
+        return count;
+    }
+    return count;
+  }
+
+  public static int checkRight(char[][] board) {
+    int count = 0;
+    int row = 0;
+    for (int col = board.length - 1; col >= 0; col--) {
+      if (board[row][col] == 'X')
+        count++;
+      if (board[row][col] == '0')
+        count--;
+      if (count == 3 || count == -3)
+        return count;
+      row++;
+    }
+    return count;
+  }
 
 }
