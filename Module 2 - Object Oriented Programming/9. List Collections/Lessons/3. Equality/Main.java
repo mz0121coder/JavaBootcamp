@@ -4,11 +4,9 @@ public class Main {
     public static void main(String[] args) {
 
         City paris = new City("Paris", 2161000);
-        City copy = paris;
+        City paris2 = paris;
 
-        System.out.println(paris.equals(copy));
-        copy.setPopulation(2059003);
-        paris.setPopulation(3129003);
+        System.out.println(paris.equals(paris2));
 
         ArrayList<City> cities = new ArrayList<>();
         cities.add(new City("Paris", 2161000));
@@ -16,7 +14,7 @@ public class Main {
         cities.add(new City("Venice", 261905));
         cities.add(new City("Versailles", 85771));
         cities.add(new City("London", 8982000));
-        
+
         System.out.println(cities.contains(paris));
     }
 

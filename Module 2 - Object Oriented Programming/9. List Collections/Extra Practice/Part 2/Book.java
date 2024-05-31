@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Book {
 
     private String title;
@@ -50,5 +52,16 @@ public class Book {
     public void setPrice(double price) {
         this.price = price;
     }
-    
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this)
+            return true;
+        if (!(o instanceof Book)) {
+            return false;
+        }
+        Book book = (Book) o;
+        return Objects.equals(title, book.title) && Objects.equals(author, book.author) && rating == book.rating
+                && price == book.price;
+    }
 }
