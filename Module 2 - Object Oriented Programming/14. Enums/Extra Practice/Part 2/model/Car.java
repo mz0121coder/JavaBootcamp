@@ -22,6 +22,14 @@ public class Car {
         setPrice(price);
     }
 
+    public Car(Car sourceCar) {
+        setMake(sourceCar.getMake());
+        setModel(sourceCar.getModel());
+        setBodyType(sourceCar.getBodyType());
+        setProductionYear(sourceCar.getProductionYear());
+        setPrice(sourceCar.getPrice());
+    }
+
     public String getMake() {
         return make;
     }
