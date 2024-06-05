@@ -19,5 +19,8 @@ public class Credit extends Account {
         this.credit = credit;
     }
 
-
+    @Override
+    public Account clone() {
+        return new Credit(super.getId(), this.getCredit());
+    }
 }
