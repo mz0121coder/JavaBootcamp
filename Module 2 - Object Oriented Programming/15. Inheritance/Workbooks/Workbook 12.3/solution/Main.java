@@ -17,6 +17,4 @@ public class Main {
         System.out.println("Area: " + shape.getArea());
         System.out.println("Volume: " + shape.getVolume());
     }
-
 }
-  
