@@ -14,16 +14,18 @@ public class Main {
         coffeeRatings.put("Heart Coffee Bolivia La Morena", 8);
         coffeeRatings.put("Ritual Coffee Nicaragua La Ilusión", 10);
         coffeeRatings.put("Verve Coffee Roasters El Salvador Finca Kilimanjaro", 9);
-        
+
         System.out.println("\nMenu\n-------");
 
+        coffeeRatings.forEach((key, value) -> System.out.println("Coffee: " + key + " " + " Rating: " + value));
     }
 }
 
-/*********IMPERATIVE LOGIC*********
-    for (int i = 0; i < coffeeRatings.size(); i++) {
-        String coffee = (String) coffeeRatings.keySet().toArray()[i];
-        Integer rating = coffeeRatings.get(coffee);
-        System.out.println("Coffee " + coffee + " Rating " + rating);
-    }
-**********************************/
+/*********
+ * IMPERATIVE LOGIC*********
+ * for (int i = 0; i < coffeeRatings.size(); i++) {
+ * String coffee = (String) coffeeRatings.keySet().toArray()[i];
+ * Integer rating = coffeeRatings.get(coffee);
+ * System.out.println("Coffee " + coffee + " Rating " + rating);
+ * }
+ **********************************/
